@@ -47,7 +47,7 @@ UserSchema.pre("save", function (next) {
 });
 
 UserSchema.pre("save", async function (next) {
-  if (this.isNew) {
+  if (this.isNew) { //Boolean flag specifying if the document is new.
     try {
       const document = await User.findOne({
         $or: [{ email: this.email }, { username: this.username }],

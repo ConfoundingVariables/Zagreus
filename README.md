@@ -2,8 +2,13 @@
 
 ## Primary
 
-- [ ] User Authentication and Authorization
+- [ ] User Authentication
+  - [ ] Sign-up
+  - [ ] Log-in
 - [ ] Image Upload and Sharing
+  - [ ] Post creation
+  - [ ] Image Upload
+  - [ ] Caption
 - [ ] Image Discovery and Exploration
   - [ ] Homepage Feed
   - [ ] Explore Feed
