@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
       }
     },
   },
+  fullname: { 
+    type: String,
+    required: true,
+  },
   username: {
     // Display name for profile**
     type: String,
@@ -25,6 +29,9 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
   },
+  token: {
+    required: true
+  }
 });
 
 //Middleware function to run before executing "save" query on DB
