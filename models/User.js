@@ -29,9 +29,6 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
   },
-  token: {
-    required: true
-  }
 });
 
 //Middleware function to run before executing "save" query on DB
