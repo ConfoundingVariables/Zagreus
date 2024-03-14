@@ -11,9 +11,9 @@ const SignUpPage = lazy(() => import("../../Pages/SignUpPage/SignUpPage"));
 export default function App() {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline shadow-2xl text-orange-500">
+      {/* <h1 className="text-3xl font-bold underline shadow-2xl text-orange-500">
         Zagreus
-      </h1>
+      </h1> */}
       <Routes>
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>
