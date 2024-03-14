@@ -6,3 +6,5 @@ const userTypes = {
   SIGN_UP_START: "SIGN_UP_START",
   SIGN_UP_FAILURE: "SIGN_UP_FAILURE",
 };
+
+export default userTypes;
