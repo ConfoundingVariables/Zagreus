@@ -1,6 +1,6 @@
 import userTypes from "./userTypes";
 
-import { registerUser } from "../../services/authenticationServices";
+import { registerUser } from "../../services/authService";
 
 export const signUpStart =
   (email, fullName, username, password) => async (dispatch) => {
