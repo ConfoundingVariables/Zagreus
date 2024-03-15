@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
+import * as yup from "yup";
 
 import { signUpStart } from "../../redux/user/userActions";
 import { selectError, selectFetching } from "../../redux/user/userSelectors";
@@ -17,23 +18,23 @@ import {
 } from "@material-tailwind/react";
 
 export default function SignUpCard({ signUpStart, error, fetching }) {
-  const formik = useFormik({
+  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: "",
-      fullName: "",
+      fullname: "",
       username: "",
       password: "",
     },
-    onSubmit: (values) =>
-      signUpStart(
-        values.email,
-        values.fullName,
-        values.username,
-        values.password
-      ),
+    onSubmit: (values) => console.log(values),
+    // signUpStart(
+    //   values.email,
+    //   values.fullName,
+    //   values.username,
+    //   values.password
+    // ),
   });
   return (
-    <Card className="w-32">
+    <Card className="grid justify-center">
       <CardHeader
         variant="gradient"
         color="gray"
@@ -43,63 +44,46 @@ export default function SignUpCard({ signUpStart, error, fetching }) {
           Sign Up
         </Typography>
       </CardHeader>
-      {Object.keys(formik.errors).map((field) => {
-        if (formik.touched[field]) {
-          return (
-            <p
-              className="error"
-              key={formik.errors[field]}
-              style={{ marginTop: "0" }}
-            >
-              {formik.errors[field]}
-            </p>
-          );
-        }
-      })}
-      <form className="form-card__form" onSubmit={formik.handleSubmit}>
+      <form className="form-card__form" onSubmit={handleSubmit}>
         <CardBody className="flex flex-col gap-4">
           <Input
+            type="text"
             name="email"
-            fieldProps={formik.getFieldProps("email")}
-            valid={formik.touched.email && !formik.errors.email}
-            placeholder="Email address"
             label="Email"
+            value={values.email}
+            onBlur={handleBlur}
+            onChange={handleChange}
             size="lg"
           />
           <Input
-            name="fullName"
-            fieldProps={formik.getFieldProps("fullName")}
-            valid={formik.touched.fullName && !formik.errors.fullName}
-            placeholder="Full Name"
+            type="text"
             label="Full Name"
+            name="fullname"
+            value={values.fullname}
+            onBlur={handleBlur}
+            onChange={handleChange}
             size="lg"
           />
           <Input
-            name="username"
-            fieldProps={formik.getFieldProps("username")}
-            valid={formik.touched.username && !formik.errors.username}
-            placeholder="Username"
+            type="text"
             label="Username"
+            name="username"
+            value={values.username}
+            onBlur={handleBlur}
+            onChange={handleChange}
             size="lg"
           />
           <Input
-            name="password"
-            fieldProps={formik.getFieldProps("password")}
-            placeholder="Password"
-            valid={formik.touched.password && !formik.errors.password}
             type="password"
             label="Password"
+            name="password"
+            value={values.password}
+            onBlur={handleBlur}
+            onChange={handleChange}
             size="lg"
           />
           <div className="-ml-2.5"></div>
-          <Button
-            loading={fetching}
-            disabled={
-              Object.keys(formik.touched).length === 0 ? true : !formik.isValid
-            }
-            variant="gradient"
-            fullWidth
-          >
+          <Button type="submit" variant="gradient" fullWidth>
             Sign Up
           </Button>
         </CardBody>
