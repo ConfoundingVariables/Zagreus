@@ -18,6 +18,18 @@ import {
 } from "@material-tailwind/react";
 
 export default function SignUpCard({ signUpStart, error, fetching }) {
+  const signUpValidation = yup.object({
+    email: yup
+      .string("Enter your email")
+      .email("Enter a valid Email")
+      .required("Email is required"),
+    fullname: yup.string("Enter a valid Name").min(3),
+    username: yup.string("Enter a vaild Username").min(3),
+    password: yup
+      .string("Enter your password")
+      .min(8, "Password should be of minimum 8 characters length")
+      .required("Password is required"),
+  });
   const { values, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: "",
@@ -25,6 +37,7 @@ export default function SignUpCard({ signUpStart, error, fetching }) {
       username: "",
       password: "",
     },
+    validationSchema: signUpValidation,
     onSubmit: (values) => console.log(values),
     // signUpStart(
     //   values.email,
@@ -33,6 +46,7 @@ export default function SignUpCard({ signUpStart, error, fetching }) {
     //   values.password
     // ),
   });
+
   return (
     <Card className="grid justify-center">
       <CardHeader
